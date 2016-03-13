@@ -1,7 +1,5 @@
 package litcore;
 
-import Card.Set;
-import Card.Suit;
 
 public class Card {
 	public enum Suit {
@@ -16,6 +14,7 @@ public class Card {
 				case 2:return SPADES;
 				case 3:return CLUBS;
 			}
+			return HEARTS;
 		}
 	}
 	
@@ -79,15 +78,19 @@ public class Card {
 		switch (suit) {
 			case HEARTS: {
 				name+="Hearts";
+				break;
 			}
 			case DICE: {
 				name+="Dice";
+				break;
 			}
 			case SPADES: {
 				name+="Spades";
+				break;
 			}
 			case CLUBS: {
 				name+="Clubs";
+				break;
 			}
 		}
 		return name;
