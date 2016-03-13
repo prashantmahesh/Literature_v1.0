@@ -25,7 +25,7 @@ public class Deck {
 	        Card temp = new Card(8,0);
 	        temp = fCards[i];
 	        fCards[i] = fCards [ts];
-	        fCards[ts] = fCards[i];
+	        fCards[ts] = temp;
 	    }
 	}
 	// returns i th card of the deck
