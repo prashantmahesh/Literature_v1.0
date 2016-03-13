@@ -24,8 +24,8 @@ public class Deck {
 	        int ts = ThreadLocalRandom.current().nextInt(0, 48);
 	        Card temp = new Card(8,0);
 	        temp = fCards[i];
-	        fCards[i] = fCards [i + ts];
-	        fCards[i + ts] = fCards[i];
+	        fCards[i] = fCards [ts];
+	        fCards[ts] = fCards[i];
 	    }
 	}
 	// returns i th card of the deck
