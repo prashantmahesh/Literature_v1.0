@@ -1,10 +1,10 @@
 package litcore;
 
 public class PlayerQueries {
-	public enum eAskCardOutcomeTypes {
+	public enum AskCardOutcomeTypes {
 	    GaveCard(0),
 	    CardNotPresent(1);
-		private eAskCardOutcomeTypes(int value) {
+		private AskCardOutcomeTypes(int value) {
 			this.value = value;
 		}
 		public int getValue() {
@@ -13,36 +13,36 @@ public class PlayerQueries {
 		private final int value;
 	}
 	class AskCardQuery{
-		private Player Asker ,Respondent;
-		private Card Fcard;
-		public AskCardQuery(Player aAsker,Player aRespondent,Card aCard){
-			Asker = aAsker;
-			Respondent = aRespondent;
-			Fcard = aCard;
+		private Player asker ,respondent;
+		private Card card;
+		public AskCardQuery(Player aasker,Player arespondent,Card aCard){
+			asker = aasker;
+			respondent = arespondent;
+			card = aCard;
 		}
-		public Player getAsker(){
-			return Asker;
+		public Player getasker(){
+			return asker;
 		}
-		public Player getRespondent(){
-			return Respondent;
+		public Player getrespondent(){
+			return respondent;
 		}
 		Card getCard(){
-			return Fcard;
+			return card;
 		}
 	}
 	class AskCardOutcome{
-		private eAskCardOutcomeTypes fAskCardOutcomeTypes;
-		private AskCardQuery fAskCardQuery;
+		private AskCardOutcomeTypes outcomeType;
+		private AskCardQuery fAskCardQuery;	
 		
-		public AskCardOutcome(eAskCardOutcomeTypes aAskCardOutcomeTypes , AskCardQuery aAskCardOutcome){
-			fAskCardOutcomeTypes = aAskCardOutcomeTypes;
+		public AskCardOutcome(AskCardOutcomeTypes aAskCardOutcomeTypes , AskCardQuery aAskCardOutcome){
+			outcomeType = aAskCardOutcomeTypes;
 			fAskCardQuery = aAskCardOutcome;
 		}
 		public AskCardQuery getAskCardQuery(){
 			return fAskCardQuery;
 		}
-		public eAskCardOutcomeTypes getAskCardOutcome(){
-			return fAskCardOutcomeTypes;
+		public AskCardOutcomeTypes getOutcomeType(){
+			return outcomeType;
 		}
 	}
-}
+}	
