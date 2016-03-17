@@ -15,15 +15,15 @@ public class PlayerQueries {
 	class AskCardQuery{
 		private Player asker ,respondent;
 		private Card card;
-		public AskCardQuery(Player aasker,Player arespondent,Card aCard){
-			asker = aasker;
-			respondent = arespondent;
+		public AskCardQuery(Player aAsker,Player aRespondent,Card aCard){
+			asker = aAsker;
+			respondent = aRespondent;
 			card = aCard;
 		}
-		public Player getasker(){
+		public Player getAsker(){
 			return asker;
 		}
-		public Player getrespondent(){
+		public Player getRespondent(){
 			return respondent;
 		}
 		Card getCard(){
