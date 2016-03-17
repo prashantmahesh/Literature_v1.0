@@ -23,4 +23,9 @@ public interface EventHandler {
 	 * @return The <i>eventDispatcher</i> object
 	 */
 	public EventDispatcher getEventDispatcher();
+	
+	/**
+	 * Register all event types in this function. Typically called in constructor.
+	 */
+	public void registerForEvents();
 }
