@@ -20,8 +20,8 @@ public class Deck {
 	}
 	//shuffling the deck
 	public void shuffle(){
-		for(int i = 0;i < 48;i++) {
-	        int ts = ThreadLocalRandom.current().nextInt(0, 48);
+		for(int i = 0;i < 47;i++) {
+	        int ts = ThreadLocalRandom.current().nextInt(i + 1, 48);
 	        Card temp = new Card(8,0);
 	        temp = fCards[i];
 	        fCards[i] = fCards [ts];
