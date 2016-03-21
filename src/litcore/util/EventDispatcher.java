@@ -1,7 +1,9 @@
-package litcore;
+package litcore.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import litcore.EventType;
 
 /**
  * Keeps track of subscriptions of different EventHandlers and posts events, making each respective EventHandler handle the event.
