@@ -1,5 +1,7 @@
 package litcore;
 
+import litcore.util.EventDispatcher;
+
 public class ConsoleUserPlayer extends Player {
 	
 	

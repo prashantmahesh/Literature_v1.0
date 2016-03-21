@@ -6,5 +6,7 @@ package litcore;
  */
 public enum EventType {
 	ASKCARD_QUERY,
-	ASKCARD_OUTCOME
+	ASKCARD_OUTCOME,
+	TURNCHANGE,
+	NEWTURN
 }

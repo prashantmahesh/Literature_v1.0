@@ -1,4 +1,4 @@
-package litcore;
+package litcore.util;
 
 /**
  * Interface to define the EventHandler functionality. 

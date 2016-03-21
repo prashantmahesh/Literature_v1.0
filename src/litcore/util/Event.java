@@ -1,4 +1,6 @@
-package litcore;
+package litcore.util;
+
+import litcore.EventType;
 
 /**
  * Class to define Events occurring within the application.

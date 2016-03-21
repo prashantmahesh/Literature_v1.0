@@ -3,6 +3,14 @@ package litcore;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import litcore.AskCard.*;
+import litcore.Events.AskCardOutcomeEvent;
+import litcore.Events.AskCardQueryEvent;
+import litcore.Events.TurnChangeEvent;
+import litcore.util.Event;
+import litcore.util.EventDispatcher;
+import litcore.util.EventHandler;
+
 import java.util.Iterator;
 
 public abstract class Player implements EventHandler {
@@ -13,6 +21,7 @@ public abstract class Player implements EventHandler {
 		teammates = new ArrayList<Player>();
 		eventDispatcher = aEventDispatcher;
 		name = aName;
+		registerForEvents();
 		
 	}
 	
@@ -141,6 +150,27 @@ public abstract class Player implements EventHandler {
 	}
 	
 	protected void askCard(Player aPlayer,Card aCard) {
+		
+		AskCardQuery askCardQuery = new AskCardQuery(this,aPlayer,aCard);
+		
+		AskCardQueryEvent askCardQueryEvent = new AskCardQueryEvent(askCardQuery);
+		
+		getEventDispatcher().postEvent(askCardQueryEvent);
+		AskCardOutcome askCardOutcome;
+		
+		if(aPlayer.giveCard(this,aCard)) {
+			askCardOutcome = new AskCardOutcome(AskCardOutcomeType.GaveCard,askCardQuery);
+		}
+		else {
+			askCardOutcome = new AskCardOutcome(AskCardOutcomeType.CardNotPresent,askCardQuery);
+		}
+		AskCardOutcomeEvent askCardOutcomeEvent = new AskCardOutcomeEvent(askCardOutcome);
+		getEventDispatcher().postEvent(askCardOutcomeEvent);
+		
+		if(askCardOutcome.getOutcomeType() == AskCardOutcomeType.CardNotPresent) {
+			TurnChangeEvent turnChangeEvent = new TurnChangeEvent(aPlayer);
+			getEventDispatcher().postEvent(turnChangeEvent);
+		}
 		aPlayer.giveCard(this, aCard);
 	}
 		
