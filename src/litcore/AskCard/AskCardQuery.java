@@ -17,7 +17,7 @@ public class AskCardQuery{
 	public Player getRespondent(){
 		return respondent;
 	}
-	Card getCard(){
+	public Card getCard(){
 		return card;
 	}
 }

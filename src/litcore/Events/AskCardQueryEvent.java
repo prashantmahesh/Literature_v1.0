@@ -10,7 +10,7 @@ public class AskCardQueryEvent extends Event {
 		askCardQuery = aAskCardQuery;
 	}
 	
-	AskCardQuery getAskCardQuery() {
+	public AskCardQuery getAskCardQuery() {
 		return askCardQuery;
 	}
 	
