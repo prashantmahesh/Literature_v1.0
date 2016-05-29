@@ -173,6 +173,16 @@ public class LitConsole implements EventHandler {
 	public void log(String aMessage) {
 		System.out.println(aMessage);
 	}
+	
+	public void clearScreen() {
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+	}
+	
+	public void waitForEnterKey() throws IOException {
+		System.out.println("Press Enter to Continue..");
+		System.in.read();
+	}
 
 	private EventDispatcher eventDispatcher;
 	private GamePlayEngine gamePlayEngine;

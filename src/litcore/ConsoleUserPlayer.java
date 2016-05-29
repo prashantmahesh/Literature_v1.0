@@ -1,5 +1,7 @@
 package litcore;
 
+import java.io.IOException;
+
 import litcore.util.EventDispatcher;
 
 public class ConsoleUserPlayer extends Player {
@@ -12,6 +14,7 @@ public class ConsoleUserPlayer extends Player {
 
 	@Override
 	public void play() {
+		litConsole.clearScreen();
 		litConsole.printCards(this);
 		Player aPlayer = litConsole.getPlayer("Enter player to ask: ");
 		while(isTeammate(aPlayer)) {
@@ -24,6 +27,13 @@ public class ConsoleUserPlayer extends Player {
 			litConsole.getCard(LitConsole.INVALID_CARD_MESSAGE);
 		}
 		askCard(aPlayer,aCard);
+		try {
+			litConsole.waitForEnterKey();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		litConsole.clearScreen();
+		
 	}
 	
 	LitConsole litConsole;
