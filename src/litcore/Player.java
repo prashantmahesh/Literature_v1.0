@@ -89,11 +89,6 @@ public abstract class Player implements EventHandler {
 	
 	public abstract void play();
 	
-	public static void makeTeam(Player p1,Player p2) {
-		p1.addTeammate(p2);
-		p2.addTeammate(p1);
-	}
-	
 	public boolean hasSetBase(Card.Set aSet) {
 		Iterator<Card> iterator = cards.iterator();
 		while(iterator.hasNext()) {

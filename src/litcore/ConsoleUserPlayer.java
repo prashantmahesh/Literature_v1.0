@@ -19,12 +19,12 @@ public class ConsoleUserPlayer extends Player {
 		Player aPlayer = litConsole.getPlayer("Enter player to ask: ");
 		while(isTeammate(aPlayer)) {
 			litConsole.log("Cannot ask teammate.");
-			litConsole.getPlayer(LitConsole.INVALID_PLAYER_MESSAGE);
+			aPlayer = litConsole.getPlayer(LitConsole.INVALID_PLAYER_MESSAGE);
 		}
 		Card aCard = litConsole.getCard("Enter card to ask: ");
 		while(!validCardToAsk(aCard)) {
 			litConsole.log("Cannot ask this card.");
-			litConsole.getCard(LitConsole.INVALID_CARD_MESSAGE);
+			aCard = litConsole.getCard(LitConsole.INVALID_CARD_MESSAGE);
 		}
 		askCard(aPlayer,aCard);
 		try {

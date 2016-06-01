@@ -13,6 +13,12 @@ public class Main {
 		for(int i = 0;i < 4;i++) {
 			players[i] = new ConsoleUserPlayer(eventDispatcher,"Player_" + (i + 1), litConsole);
 		}
+		
+		players[1].addTeammate(players[3]);
+		players[3].addTeammate(players[1]);
+		players[0].addTeammate(players[2]);
+		players[2].addTeammate(players[0]);
+		
 		Deck deck = new Deck();
 		gamePlayEngine.distribute(deck);
 		for(int i = 0;i < 4;i++) {
