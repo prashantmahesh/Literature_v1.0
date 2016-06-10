@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="Literature_v1.0/GameServer.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Literature_v1.0/BuildServer.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=Literature_v1.0/src&lt;litnetwork.Server{GameServer.java[GameServer" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/Literature_v1.0/.DS_Store"/>
+        <file path="/Literature_v1.0/Manifest.xml"/>
+        <javaElement handleIdentifier="=Literature_v1.0/src"/>
+        <folder path="/Literature_v1.0/.settings"/>
+        <file path="/Literature_v1.0/.classpath"/>
+        <file path="/Literature_v1.0/octave-core"/>
+        <file path="/Literature_v1.0/README.md"/>
+        <file path="/Literature_v1.0/.project"/>
+    </selectedElements>
+</jardesc>
