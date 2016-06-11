@@ -2,19 +2,23 @@ package litnetwork.Server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Map;
+
+import litnetwork.GameMessage;
+import litnetwork.NetworkConsole;
 
 public class GameServer extends Thread {
 	
-	private ServerSocket serverSocket;
 	
-	private HashMap<String, Socket> onlineUsers;
 	
 	public GameServer(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
-		onlineUsers = new HashMap<String,Socket>();
+		onlineUsers = new HashMap<String,ObjectOutputStream>();
+		console = new NetworkConsole();
 	}
 	
 	public void run() {
@@ -22,36 +26,59 @@ public class GameServer extends Thread {
 		while(true) {
 			try {
 				Socket newClient = serverSocket.accept();
-				ObjectInputStream in = new ObjectInputStream(newClient.getInputStream());
-				String username = (String)in.readObject();
-				login(username,newClient);
+				login(newClient);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
-		
+			} 
+		}	
 	}
 	
-	public void login(String username,Socket client) {
+	public void handleMessage(GameMessage message) throws IOException {
+		console.log(message);
+		for(Map.Entry<String,ObjectOutputStream> entry : onlineUsers.entrySet()) {
+			if(entry.getKey() != message.getSender()) {
+				sendMessage(message,entry.getKey());
+			}
+		}
+	}
+	
+	public boolean sendMessage(GameMessage message,String toUsername) throws IOException {
+		if(onlineUsers.containsKey(toUsername)) {
+			onlineUsers.get(toUsername).writeObject(message);
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public void login(Socket client) throws IOException, ClassNotFoundException {
+		ObjectInputStream in = new ObjectInputStream(client.getInputStream());
+		String username = (String)in.readObject();
 		if(onlineUsers.containsKey(username)) {
 			//TODO Handle Error
 			return;
 		}
-		onlineUsers.put(username,client);
-		new GameServerListenerThread(username, client,this).start();
-		System.out.println(username + " has entered.. ");
+		ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+		onlineUsers.put(username,out);
+		new GameServerListenerThread(username,in,this).start();
+		console.log(username + " has entered..");
 	}
 	
 	public void logout(String username) {
 		assert onlineUsers.containsKey(username);
 		onlineUsers.remove(username);
-		System.out.println(username + " has exited.. ");
+		console.log(username + " has exited..");
 	}
 	
+	private ServerSocket serverSocket;
+	private HashMap<String, ObjectOutputStream> onlineUsers;
+	private NetworkConsole console;
+	
 	public static void main(String[] args) {
-		int port = 8143;
+		int port = 8243;
 		GameServer gameServer = null;
 		try {
 			gameServer = new GameServer(port);
